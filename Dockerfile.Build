@@ -1,0 +1,24 @@
+# Stage 2: Create a clean Ubuntu-based image for copying built files
+FROM ubuntu:latest
+
+# Install necessary packages
+RUN apt-get update && apt-get install -y nodejs npm
+
+# Copy your project files into the container
+WORKDIR /voting-system-contract
+
+# Clear the contents of the working directory
+RUN rm -rf ./*
+
+# Copy package.json and package-lock.json
+COPY package*.json /voting-system-contract/
+
+# Install dependencies
+RUN npm install
+
+COPY src /voting-system-contract/src/
+COPY hp.cfg.override /voting-system-contract/
+COPY .env /voting-system-contract/
+
+# Build your project using the npm script instead of manual ncc build
+RUN npm run buildLinux
