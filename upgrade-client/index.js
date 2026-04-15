@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const HotPocket = require('hotpocket-js-client');
-const ContractService = require('./contract-service');
+const ContractService = require('./contract-service'); // comment from github infront of ContractService
 
 // Usage:
 // node index.js <contractUrl> <zipFilePath> <privateKeyHex> <version> <description>
